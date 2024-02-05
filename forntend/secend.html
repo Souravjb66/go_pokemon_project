@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color:black">
+    <h1 style="color:red">welcome</h1>
+    <h1 style="color:red">name =<span id="p1" style="color:rgb(255, 72, 0)"></span></h1><span id="p2" style="color:rgb(255, 55, 0)"></span><span id="p3" style="color:rgb(255, 64, 6)"></span>
+    <!-- <h1 id="p1" style="color:green"></h1>
+    <h1 id="p2" style="color:red"></h1>
+    <h1 id="p3" style="color:red"></h1> -->
+    <button id="b1">click me</button>
+    <script>
+        document.getElementById("b1").addEventListener("click",ball);
+        async function called(){
+            try{
+                const url=await fetch("http://127.0.0.1:3000/getId/2");
+                const response=await url.json()
+                document.getElementById("p1").ineerText=JSON.stringify(response);
+                console.log(response.name)
+                
+
+
+            }catch(err){
+                console.log(err)
+            }
+           
+        }
+        async function ball(){
+            try{
+                const url=await fetch("http://127.0.0.1:3000/getId/1")
+                const response=await url.json()
+                document.getElementById("p1").innerText=response.name
+
+                document.getElementById("p2").innerText=response.special
+
+                const pokemonNames = response.pokemon.map(pokemon => pokemon.name);
+
+                document.getElementById("p3").innerText=pokemonNames[1]
+
+                
+                const val=JSON.stringify(response)
+                console.log(val)
+                
+                
+                
+        
+            }catch(error){
+                console.log("geting "+error)
+            }
+            
+        
+        
+        }
+        async function evry(){
+            const url=await fetch("http://127.0.0.1:3000/getAll")
+        }
+        
+        
+        
+    </script>
+</body>
+</html>
